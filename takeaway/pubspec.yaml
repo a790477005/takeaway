@@ -74,3 +74,10 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+  assets:
+    - images/dynamic_icon.png
+    - images/mine_icon.png
+    - images/order_icon.png
+    - images/release_icon.png
+    - images/release_line.png

@@ -14,6 +14,33 @@ class OrderPageState extends State<OrderPage> with SingleTickerProviderStateMixi
 
   TabController tabController;
 
+  List dataSource = [
+    {
+      'icon':'images/2pic.jpg',
+      'title':'等待取件',
+      'logisticsCompany':'圆通快递',
+      'message':'已付款 ¥3',
+      'detail':'正在等待取件',
+      'buttonMessage':'取消订单'
+    },
+    {
+      'icon':'picking_photo.png',
+      'title':'正在取件',
+      'logisticsCompany':'圆通快递',
+      'message':'已付款 ¥3',
+      'detail':'正在取件',
+      'buttonMessage':'确认收件'
+    },
+    {
+      'icon':'3pic.jpg',
+      'title':'已经送达',
+      'logisticsCompany':'圆通快递',
+      'message':'已付款 ¥3',
+      'detail':'已经送达',
+      'buttonMessage':'确认收件'
+    }
+  ];
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -44,7 +71,45 @@ class OrderPageState extends State<OrderPage> with SingleTickerProviderStateMixi
   }
   
   _tabBarView() => TabBarView(children: <Widget>[
-    Center(child: new Text("我的发布"),),
+    ListView.builder(itemBuilder: (context,index){
+      return Stack(
+        children: [
+          Positioned(child: Container(
+            child: Image.asset("images/card_photo.png"),
+          ),),
+          Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0),child: new Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(width: 25,),
+                Padding(child: Image.asset("images/" + this.dataSource[index]['icon']),padding: EdgeInsets.fromLTRB(0, 30, 0, 0),),
+                Column(
+                  children: [
+                    Padding(padding: EdgeInsets.fromLTRB(25, 15, 0, 0),
+                        child: Text(this.dataSource[index]['title'],
+                          style: new TextStyle(fontSize: 22),maxLines: 1,)),
+                    Padding(padding: EdgeInsets.fromLTRB(0, 8, 0, 0),child: Text(this.dataSource[index]['logisticsCompany'],style: new TextStyle(fontSize: 15,color: Color.fromRGBO(153, 153, 153, 1)),)),
+                    Padding(padding: EdgeInsets.fromLTRB(7, 0, 0, 0),child: Text(this.dataSource[index]['message'],style: new TextStyle(fontSize: 15,color: Color.fromRGBO(153, 153, 153, 1)),)),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Row(children: [
+                      Padding(padding: EdgeInsets.fromLTRB(115, 15, 0, 0),child: Text("详情",style: new TextStyle(fontSize: 15,color: Color.fromRGBO(153, 153, 153, 1)),)),
+                      Padding(padding: EdgeInsets.fromLTRB(3, 20, 0, 0),child: Image.asset("images/circular_arrow.png")),
+                    ],),
+                    Padding(padding: EdgeInsets.fromLTRB(90, 20, 0, 0),child: TextButton(child: Text("确认收件"),
+                        style: new ButtonStyle(foregroundColor: MaterialStateProperty.all(Colors.white),backgroundColor: MaterialStateProperty.all(Colors.blue))
+                    )
+                    )
+                  ],
+
+                ),
+              ]),),
+        ],
+      );
+    },
+      itemCount: dataSource.length,
+    ),
     Center(child: new Text("我的跑腿"),)
   ],
   controller: tabController,);

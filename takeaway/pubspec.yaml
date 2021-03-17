@@ -89,3 +89,20 @@ flutter:
     - images/location_icon.png
     - images/phone_icon.png
     - images/user_icon.png
+    - images/arrived_photo.png
+    - images/picking_photo.png
+    - images/wait_pick.png
+    - images/card_photo.png
+    - images/circular_arrow.png
+    - images/select_icon.png
+    - images/sort_icon.png
+    - images/sort_icon.png
+    - images/3pic.jpg
+    - images/2pic.jpg
+    - images/first_user.jpeg
+    - images/second_user.jpeg
+    - images/third_user.jpeg
+    - images/dynamicPage_card.png
+    - images/locationDynamic_icon.png
+    - images/bus_icon.png
+    - images/time_icon.png

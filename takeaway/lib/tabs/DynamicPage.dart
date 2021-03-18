@@ -43,6 +43,7 @@ class DynamicPageState extends State<DynamicPage>{
   void isShowSelectState(){
     setState(() {
       isShowSelectView = !isShowSelectView;
+      isShowSortView = false;
     });
   }
 
@@ -51,6 +52,7 @@ class DynamicPageState extends State<DynamicPage>{
   void isShowSortViewState(){
     setState(() {
       isShowSortView = !isShowSortView;
+      isShowSelectView = false;
     });
   }
 
@@ -64,10 +66,10 @@ class DynamicPageState extends State<DynamicPage>{
             Expanded(child: IconTextButton.icon(onPressed: (){
               isShowSelectState();
             }, icon: Image.asset("images/select_icon.png"),
-                label: Text("排序"),
+                label: Text("选择"),
                 iconTextAlignment: IconTextAlignment.iconRightTextLeft),flex: 1,
             ),
-            SizedBox(width: 50,child: Container(color: Colors.black,),),
+            SizedBox(width: 1,child: Container(child: Container(color: Color.fromRGBO(184, 184, 184, 1),),),height: 30,),
             Expanded(child: IconTextButton.icon(onPressed: (){
               isShowSortViewState();
             }, icon: Image.asset("images/sort_icon.png"),
@@ -85,7 +87,7 @@ class DynamicPageState extends State<DynamicPage>{
                 child: Stack(
                   children: [
                     Positioned(child: Container(
-                      child: Image.asset("images/card_photo.png"),
+                      child: Image.asset("images/card_photo.png",fit: BoxFit.fill,height: 180,),
                     ),
                     ),
 
@@ -118,23 +120,27 @@ class DynamicPageState extends State<DynamicPage>{
 
                           Container(child: Row(
                             children: [
-                              Column(
+                              Expanded(child: Column(
                                 children: [
                                   Container(child: Row(children: [
                                     Padding(padding: EdgeInsets.fromLTRB(20, 5, 0, 0),child: Image.asset("images/time_icon.png"),),
                                     Padding(padding: EdgeInsets.fromLTRB(5, 5, 0, 0),child: Text(this.dataSource[index]['hopeReceive_time'],maxLines: 1,)),
-                                  ],),),
+                                  ],)),
                                   Container(child: Row(children: [
-                                    Padding(padding: EdgeInsets.fromLTRB(0, 5, 0, 0),child: Image.asset("images/bus_icon.png"),),
+                                    Padding(padding: EdgeInsets.fromLTRB(20, 5, 0, 0),child: Image.asset("images/bus_icon.png"),),
                                     Padding(padding: EdgeInsets.fromLTRB(5, 5, 0, 0),child: Text(this.dataSource[index]['logistics_company'])),
-                                  ],),),
+                                  ],)),
                                   Container(child: Row(children: [
-                                    Padding(padding: EdgeInsets.fromLTRB(0, 5, 0, 0),child: Image.asset("images/locationDynamic_icon.png"),),
+                                    Padding(padding: EdgeInsets.fromLTRB(20, 5, 0, 0),child: Image.asset("images/locationDynamic_icon.png"),),
                                     Padding(padding: EdgeInsets.fromLTRB(5, 5, 0, 0),child: Text(this.dataSource[index]['location'])),
                                   ],),)
                                 ],
-                              ),
-                              Column()
+                              ),flex: 2,),
+
+                              Expanded(child: Column(children: [
+                                  Padding(padding: EdgeInsets.fromLTRB(0, 25, 0, 0),child: TextButton(child: Text("接单"),
+                                  style: new ButtonStyle(foregroundColor: MaterialStateProperty.all(Colors.white),backgroundColor: MaterialStateProperty.all(Colors.blue)))),
+                              ],),flex: 1,)
                             ],
                           ),)
                         ],
@@ -163,14 +169,75 @@ class DynamicPageState extends State<DynamicPage>{
   // 根据控制字段添加相应的widget
   _showSelectView(){
     if(isShowSelectView){
-      return Center(child: new Text("视图一"),);
+      return Container(
+        child: Column(
+          children: [
+            Container(
+              child: Row(
+                children: [
+
+                ],
+              ),
+            ),
+            SizedBox(child: Container(color: Color.fromRGBO(184, 184, 184, 1),),height: 1,),
+            Container(
+              child: Row(
+                children: [
+
+                ],
+              ),
+            ),
+            SizedBox(child: Container(color: Color.fromRGBO(184, 184, 184, 1),),height: 1,),
+            Container(
+              child: Row(
+                children: [
+
+                ],
+              ),
+            ),
+            SizedBox(child: Container(color: Color.fromRGBO(184, 184, 184, 1),),height: 1,),
+          ],
+        ),
+      color: Color.fromRGBO(249, 249, 249, 1),);
     }else{
       return SizedBox(height: 0,);
     }
   }
   _showSortView(){
     if(isShowSortView){
-      return Center(child: new Text("视图二"),);
+      return Container(
+        child: Column(
+          children: [
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                    Center(child: Text("时间"),)
+                ],
+              ),
+            ),
+            SizedBox(child: Container(color: Color.fromRGBO(184, 184, 184, 1),),height: 1,),
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(child: Text("位置"),)
+                ],
+              ),
+            ),
+            SizedBox(child: Container(color: Color.fromRGBO(184, 184, 184, 1),),height: 1,),
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(child: Text("时间"),)
+                ],
+              ),
+            ),
+            SizedBox(child: Container(color: Color.fromRGBO(184, 184, 184, 1),),height: 1,),
+          ],
+        ),
+        color: Color.fromRGBO(249, 249, 249, 1),);
     }else{
       return SizedBox(height: 0,);
     }

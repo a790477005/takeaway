@@ -16,7 +16,7 @@ class OrderPageState extends State<OrderPage> with SingleTickerProviderStateMixi
 
   List dataSource = [
     {
-      'icon':'images/2pic.jpg',
+      'icon':'2pic.jpg',
       'title':'等待取件',
       'logisticsCompany':'圆通快递',
       'message':'已付款 ¥3',
